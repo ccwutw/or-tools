@@ -204,7 +204,9 @@ class AllSolversRegistry {
 #define MATH_OPT_REGISTER_SOLVER(solver_type, solver_factory)              \
   namespace {                                                              \
   const void* const kRegisterSolver ABSL_ATTRIBUTE_UNUSED = [] {           \
+    std::cerr << "registering " << ProtoEnumToString(solver_type) << std::endl; \
     AllSolversRegistry::Instance()->Register(solver_type, solver_factory); \
+    std::cerr << "registering " << ProtoEnumToString(solver_type) << "...DONE" << std::endl; \
     return nullptr;                                                        \
   }();                                                                     \
   }  // namespace
