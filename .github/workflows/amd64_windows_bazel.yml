@@ -24,7 +24,7 @@ jobs:
       - name: Check mvn
         run: mvn --version
       - name: Setup Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Check Python
@@ -37,13 +37,11 @@ jobs:
         run: >
           bazel build
           -c opt
-          --cxxopt="/std:c++20"
-          --subcommands=true
+          --subcommands=pretty_print
           //ortools/... //examples/...
       - name: Test
         run: >
           bazel test
           -c opt
-          --cxxopt="/std:c++20"
           --test_output=errors
           //ortools/... //examples/...
